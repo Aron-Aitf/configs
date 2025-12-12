@@ -4,14 +4,6 @@
 	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
 	// same ids are connected.
 	// Example:
-	// "Print to console": {
-	// 	"prefix": "log",
-	// 	"body": [
-	// 		"console.log('$1');",
-	// 		"$2"
-	// 	],
-	// 	"description": "Log output to console"
-	// }
 	"Polars config": {
 		"prefix": "pconfig",
 		"body": [
@@ -26,5 +18,119 @@
 			"Config.set_tbl_column_data_type_inline(True)"
 		],
 		"description": "Polars Configuration"
-	}
+	},
+	"EDA import": {
+		"prefix": "edaimport",
+		"body": [
+			"import polars as pl",
+			"import seaborn as sns"
+		],
+		"description": "Import libraries needed for eda"
+	},
+	"AI import": {
+		"prefix": "aiimport",
+		"body": [
+			"import polars as pl",
+			"import numpy as np",
+			"from keras import Input, Sequential",
+			"from keras.utils import to_categorical",
+			"from keras.layers import Dense"
+		],
+		"description": "Import libraries needed for AI"
+	},
+	"ML import": {
+		"prefix": "mlimport",
+		"body": [
+			"import polars as pl",
+			"from sklearn.pipeline import make_pipeline",
+			"from sklearn.compose import make_column_transformer",
+			"from sklearn.preprocessing import StandardScaler",
+			"from sklearn.model_selection import train_test_split"
+		],
+		"description": "Import libraries needed for ML"
+	},
+	"Fastapi router": {
+		"prefix": "fastroute",
+		"body": [
+			"from fastapi import APIRouter",
+			"",
+			"router = APIRouter(",
+			"\tprefix=\"/${1:path}\",",
+			"\ttags=[\"${2:tag}\"],",
+			")",
+			"",
+			"",
+			"@router.get(\"/${3:path}\")",
+			"def ${4:function}():",
+			"\t${5:pass}"
+		],
+		"description": "Basic fastapi router boilerplate"
+	},
+	"Sklearn pipeline": {
+		"prefix": "skpipe",
+		"body": [
+			"imputer = make_column_transformer(",
+			"\t(",
+			"\t\tIterativeImputer(),",
+			"\t\t[",
+			"\t\t\t${1:\"missing_value_columns\"}",
+			"\t\t],",
+			"\t),",
+			"\tverbose_feature_names_out=False,",
+			"\tn_jobs=-1,",
+			"\tremainder=\"passthrough\",",
+			")",
+			"imputer.set_output(transform=\"polars\")",
+			"",
+			"scaler = make_column_transformer(",
+			"\t(",
+			"\t\tStandardScaler(),",
+			"\t\t[",
+			"\t\t\t${2:\"numerical_columns\"}",
+			"\t\t],",
+			"\t),",
+			"\tverbose_feature_names_out=False,",
+			"\tn_jobs=-1,",
+			"\tremainder=\"passthrough\",",
+			")",
+			"scaler.set_output(transform=\"polars\")",
+			"",
+			"pipeline = make_pipeline(",
+			"\timputer,",
+			"\tscaler,",
+			"\t${3:model}",
+			")"
+		],
+		"description": "Basic sklearn pipeline"
+	},
+	"Sklearn split": {
+		"prefix": "sksplit",
+		"body": [
+			"TARGET = \"species\"",
+			"TRAIN_PERCENTAGE = 80",
+			"input_data = ${1:data}.drop(TARGET)",
+			"output_data = ${1:data}.select(TARGET)",
+			"train_input, test_input, train_output, test_output = train_test_split(",
+			"\tinput_data, output_data, train_size=TRAIN_PERCENTAGE/100,",
+			")"
+		],
+		"description": "Sklearn data split"
+	},
+	"Keras model": {
+		"prefix": "kmodel",
+		"body": [
+			"model = Sequential(",
+			"\t[",
+			"\t\tInput(shape=(${1:input_shape})),",
+			"\t\tDense(${2:hidden_neurons}, activation=\"relu\"),",
+			"\t\tDense(${3:output_neurons}, activation=\"sigmoid\"),",
+			"\t]",
+			")",
+			"",
+			"model.compile(optimizer=\"adam\", loss=\"${4:loss_function}\")",
+			"model.summary()"
+		],
+		"description": "Keras neural network boilerplate"
+	},
+	// Add pickle + file save + read when and if needed
 }
