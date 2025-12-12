@@ -40,7 +40,6 @@ $line_break\
 [╰─](mauve)\
 $character\
 """
-
 palette = 'catppuccin_mocha'
 
 [palettes.catppuccin_mocha]
@@ -135,9 +134,9 @@ disabled = false
 [hostname]
 format = '[@$hostname ](bg:red fg:crust)'
 ssh_only = false
+
 # ssh_symbol = "@" # \ue36e '' # '⇒' # ' ' # 'ﬁ⇒'
 # trim_at = '.companyname.com'
-
 [fill]
 symbol = ' '
 style = 'bold subtext1'
@@ -242,6 +241,7 @@ map_symbol = false
 format = "[ $time ]($style)"
 style = 'bg:lavender fg:crust'
 disabled = false # set to 'false', if you want to see the time
+time_format = "%I:%M:%S %p"
 
 [cmd_duration]
 show_milliseconds = true
@@ -258,5 +258,3 @@ vimcmd_symbol = '[❮](bold fg:green)'
 vimcmd_replace_one_symbol = '[❮](bold fg:lavender)'
 vimcmd_replace_symbol = '[❮](bold fg:lavender)'
 vimcmd_visual_symbol = '[❮](bold fg:yellow)'
-
-
