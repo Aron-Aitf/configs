@@ -44,9 +44,13 @@
 	"Async main function": {
 		"prefix": "amain",
 		"body": [
+			"use std::error::Error;",
 			"",
-			"#[tokio::main(flavor = \"multi_thread\")]",
-			"async fn main() -> Result<(), Box<dyn Error>> {}"
+			"",
+			"#[tokio::main()]",
+			"async fn main() -> Result<(), Box<dyn Error>> {",
+			"\tOk(())",
+			"}"
 		],
 		"description": "Async main function with tokio"
 	},
