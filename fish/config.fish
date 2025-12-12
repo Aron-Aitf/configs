@@ -44,7 +44,7 @@ function make_venv --description "make a python virtual environment" --argument-
     source $venv_name/bin/activate.fish
 end
 
-function print_path --description "Pretty Print Path variable"
+function list_path --description "Pretty Print Path variable"
     echo $PATH | tr ' ' '\n' | sort
 end
 
@@ -67,6 +67,8 @@ if status is-interactive
     set -x EDITOR code-insiders
     set -x VISUAL code-insiders
 
-    fastfetch
+    if test "$TERM_PROGRAM" != vscode
+        fastfetch
+    end
 
 end
