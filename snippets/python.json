@@ -132,5 +132,12 @@
 		],
 		"description": "Keras neural network boilerplate"
 	},
+	"SVG plot": {
+		"prefix": "svgplot",
+		"body": [
+			"%config InlineBackend.figure_format = \"svg\""
+		],
+		"description": "Make all matplotlib based plots emit SVG images (More size, perfect resolution) "
+	},
 	// Add pickle + file save + read when and if needed
 }
